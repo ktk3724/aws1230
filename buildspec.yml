@@ -1,17 +1,36 @@
 version: 0.2
+
+# Node.js 런타임 버전 지정
+runtime-versions:
+  nodejs: 14
+
+# 환경 변수 설정 (필요에 따라 추가)
+env:
+  variables:
+    NODE_ENV: production
+
+# 빌드 단계 설정
 phases:
+  # 소스 다운로드 후 초기 설정 단계
   install:
     commands:
-      - echo Installing dependencies...
-      - npm install
+      - echo "Installing dependencies..."
+      - cd /codebuild/output/src2269795634/src   # 실제 코드가 위치하는 경로로 이동
+      - npm install   # npm install 실행
+
+  # 빌드 단계 (필요한 경우 추가)
   build:
     commands:
-      - echo Building the application...
-      - npm run build
+      - echo "Building the application..."
+      - npm run build   # 빌드 스크립트가 있다면 이 명령을 실행
+
+  # 배포 후 단계 (필요에 따라 추가)
   post_build:
     commands:
-      - echo Build completed!
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: yes
+      - echo "Build completed successfully"
+      - npm run deploy  # 배포 명령어가 있다면 추가
+
+# 캐시 설정 (옵션)
+cache:
+  paths:
+    - 'node_modules/**/*'   # `node_modules` 디렉토리를 캐시하여 빌드 시간을 단축할 수 있음
