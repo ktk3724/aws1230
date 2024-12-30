@@ -1,0 +1,14 @@
+{
+  "name": "aws-codepipeline-example",
+  "version": "1.0.0",
+  "description": "A simple Express app for testing AWS CodePipeline",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
